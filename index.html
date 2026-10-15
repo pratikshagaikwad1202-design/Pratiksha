@@ -1,0 +1,817 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="Portfolio website of Pratiksha Sudhakar Gaikwad, Final-Year Computer Engineering student and aspiring software developer." />
+<title>Pratiksha Gaikwad | CSE Student | Aspiring Software Developer</title>
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a1e3b; /* Dark Navy Background */
+    color: #FFFFFF;
+  }
+  body {
+    margin: 0;
+    padding-top: 60px; /* Space for fixed navbar */
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #00caff;
+    text-decoration: none;
+  }
+  a:focus, button:focus, nav a:focus {
+    outline: 2px solid #00caff;
+    outline-offset: 2px;
+  }
+  h1, h2, h3, h4 {
+    margin: 0 0 0.3em 0;
+    font-weight: 700;
+    color: #e0f7ff;
+  }
+  p {
+    margin-top: 0; 
+    margin-bottom: 1em;
+    color: #cdd6f4;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    padding: 0.7em 1.8em;
+    margin: 0 0.5em 0.5em 0;
+    font-size: 1rem;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #00b8f4, #0088cc);
+    color: white;
+    transition: background 0.3s ease;
+  }
+  button:hover,
+  button:focus {
+    background: linear-gradient(135deg, #0088cc, #005f7f);
+  }
+
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #071631; /* darker navy */
+    border-bottom: 1px solid #003655;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.6);
+  }
+  nav .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6em 1em;
+  }
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #00caff;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+    margin: 0;
+    padding: 0;
+  }
+  nav ul li a {
+    font-weight: 600;
+    padding: 0.5em;
+    display: inline-block;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    background: #003f5c;
+    border-radius: 4px;
+  }
+
+  /* Mobile menu button */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4em;
+    color: #00caff;
+  }
+  .menu-toggle svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Responsive navigation */
+  @media (max-width: 768px) {
+    nav ul {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      height: calc(100vh - 60px);
+      width: 220px;
+      background: #071631;
+      flex-direction: column;
+      padding-top: 1em;
+      box-shadow: -2px 0 8px rgb(0 0 0 / 0.7);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    nav ul.open {
+      transform: translateX(0%);
+    }
+    nav ul li {
+      margin: 0.5em 0;
+    }
+    .menu-toggle {
+      display: block;
+    }
+  }
+
+  /* HERO */
+  #home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 75vh;
+    justify-content: center;
+    padding: 1.5em 1em;
+    background: linear-gradient(135deg, #071931 0%, #0b1642 100%);
+    position: relative;
+    overflow: visible;
+  }
+  #home h1 {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.4em;
+  }
+  #home h2 {
+    font-weight: 500;
+    color: #68d8f6;
+    margin-bottom: 1em;
+  }
+  #home p {
+    max-width: 680px;
+    margin: 0 auto 1.5em auto;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #c1d5e0;
+  }
+  #home .btn-group {
+    margin-bottom: 1.5em;
+  }
+
+  /* Social and resume links - icons with text hidden for accessibility */
+  #home .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.3em;
+  }
+  #home .social-links a {
+    color: #00caff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #00caff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+  }
+  #home .social-links a:hover,
+  #home .social-links a:focus {
+    background-color: #00caff;
+    color: #071631;
+    border-color: #00caff;
+  }
+  #home .social-links a svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+  #home .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); border: 0;
+  }
+
+  /* Abstract technical illustration - CSS based */
+  #home .abstract-illustration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 160px;
+    height: 160px;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  /* simple abstract shape with animated lines */
+  #home .abstract-illustration svg line {
+    stroke: #00caff;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    animation: dash 5s linear infinite;
+  }
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }
+
+  /* ABOUT ME */
+  #about {
+    background: #071731;
+    padding: 3em 1em 3em;
+  }
+  #about .container > h2 {
+    margin-bottom: 1em;
+    color: #00caff;
+  }
+  #about p {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  /* SKILLS */
+  #skills {
+    padding: 3em 1em 3em;
+  }
+  #skills h2 {
+    color: #00caff;
+    margin-bottom: 1em;
+  }
+  .skill-category {
+    margin-bottom: 2em;
+  }
+  .skill-category h3 {
+    margin-bottom: 0.7em;
+    color: #68d8f6;
+    border-bottom: 2px solid #00caff;
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .skill-tag {
+    background: #0d2c57;
+    color: #a9d4ff;
+    padding: 0.4em 0.9em;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  .skill-tag:hover,
+  .skill-tag:focus {
+    background: #00a6e6;
+    color: #071631;
+    outline: none;
+  }
+
+  /* PROJECTS */
+  #projects {
+    background: #071731;
+    padding: 3em 1em 3em;
+  }
+  #projects h2 {
+    color: #00caff;
+    margin-bottom: 1em;
+  }
+  .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.8em;
+  }
+  .project-card {
+    background: #0c2a57;
+    border-radius: 10px;
+    padding: 1.2em 1.4em 1.8em;
+    box-shadow: 0 3px 9px rgb(0 0 0 / 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .project-card h3 {
+    margin-bottom: 0.3em;
+    color: #68d8f6;
+  }
+  .project-card p {
+    color: #c0d4e5;
+    font-size: 0.97rem;
+    margin-bottom: 0.6em;
+    flex-grow: 1;
+  }
+  .tech-list {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #a0bcd9;
+    margin-bottom: 0.8em;
+  }
+  .project-links a {
+    color: #00caff;
+    margin-right: 1.2em;
+    font-weight: 600;
+  }
+  .project-links a:hover,
+  .project-links a:focus {
+    text-decoration: underline;
+  }
+
+  /* EDUCATION */
+  #education {
+    padding: 3em 1em 3em;
+  }
+  #education h2 {
+    color: #00caff;
+    margin-bottom: 1em;
+  }
+  .edu-item {
+    background: #0c2a57;
+    padding: 1.2em 1.5em;
+    margin-bottom: 1.3em;
+    border-radius: 10px;
+    box-shadow: 0 3px 9px rgb(0 0 0 / 0.4);
+  }
+  .edu-item h3 {
+    color: #68d8f6;
+    margin-bottom: 0.2em;
+  }
+  .edu-item p {
+    margin: 0.1em 0;
+    font-size: 0.98rem;
+    color: #cfdffc;
+  }
+
+  /* EXPERIENCE & CERTIFICATIONS */
+  #experience {
+    background: #071731;
+    padding: 3em 1em 3em;
+  }
+  #experience h2 {
+    color: #00caff;
+    margin-bottom: 1em;
+  }
+  .exp-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .exp-item {
+    background: #0c2a57;
+    border-radius: 10px;
+    padding: 1.1em 1.4em;
+    margin-bottom: 1em;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.4);
+  }
+  .exp-item h3 {
+    color: #68d8f6;
+    margin-bottom: 0.2em;
+  }
+  .exp-item p {
+    margin: 0.1em 0 0.3em 0;
+    font-size: 0.95rem;
+    color: #cdd8f2;
+  }
+  .exp-item time {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #8cb7d1;
+  }
+
+  /* CONTACT */
+  #contact {
+    padding: 3em 1em 4em;
+    text-align: center;
+  }
+  #contact h2 {
+    color: #00caff;
+    margin-bottom: 1em;
+  }
+  #contact p {
+    font-size: 1.1rem;
+    margin-bottom: 0.8em;
+  }
+  #contact a.contact-link {
+    color: #00caff;
+    display: inline-block;
+    margin: 0.7em 1em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  #contact a.contact-link:hover,
+  #contact a.contact-link:focus {
+    color: #0095bb;
+    text-decoration: underline;
+  }
+  /* Icon for email / linkedin / github in contact */
+  #contact a svg {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    margin-right: 6px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #071631;
+    color: #486e9d;
+    text-align: center;
+    padding: 1em 1em 2em;
+    font-size: 0.9rem;
+    user-select: none;
+    position: relative;
+  }
+  footer a {
+    color: #00caff;
+    font-weight: 600;
+  }
+  footer a:hover,
+  footer a:focus {
+    text-decoration: underline;
+  }
+  footer .back-to-top {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0a1e3b;
+    border-radius: 4px;
+    border: 1.5px solid #00caff;
+    padding: 0.3em 0.6em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  footer .back-to-top:hover,
+  footer .back-to-top:focus {
+    background: #00caff;
+    color: #071631;
+    outline: none;
+  }
+
+  /* Scrollbar if needed */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #004e89;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a1e3b;
+  }
+
+  /* Accessibility and reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav role="navigation" aria-label="Primary Navigation">
+    <div class="nav-container container">
+      <a href="#home" class="logo" tabindex="0">Pratiksha Gaikwad</a>
+      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <ul id="primary-menu" class="nav-links" tabindex="-1">
+        <li><a href="#home" tabindex="0">Home</a></li>
+        <li><a href="#about" tabindex="0">About</a></li>
+        <li><a href="#skills" tabindex="0">Skills</a></li>
+        <li><a href="#projects" tabindex="0">Projects</a></li>
+        <li><a href="#education" tabindex="0">Education</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" tabindex="-1" aria-label="Introduction">
+    <div class="container">
+      <h1>Pratiksha Sudhakar Gaikwad</h1>
+      <h2>Final-Year Computer Engineering Student | Aspiring Software Developer</h2>
+      <p>
+        Analytical and creative final-year Computer Engineering student at Government College of Engineering, Yavatmal. Proficient in Python scripting and web development, passionate about blending technical foundations with visual storytelling and problem-solving. Seeking impactful internship opportunities and entry-level software development roles.
+      </p>
+      <div class="btn-group" role="group" aria-label="Hero section navigation">
+        <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'});" aria-label="View my projects">View My Projects</button>
+        <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});" aria-label="Contact me">Contact Me</button>
+      </div>
+      <div class="social-links" aria-label="Social links and resume">
+        <a href="https://github.com/pratikshagaikwad" target="_blank" rel="noopener" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.012c0 4.425 2.865 8.185 6.839 9.512.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.455-1.163-1.11-1.472-1.11-1.472-.908-.62.069-.608.069-.608 1.004.07 1.532 1.034 1.532 1.034.892 1.53 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.58 9.58 0 0 1 2.5.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.399.1 2.653.64.7 1.028 1.594 1.028 2.687 0 3.848-2.339 4.695-4.566 4.943.36.31.682.923.682 1.86 0 1.342-.012 2.423-.012 2.753 0 .269.18.58.688.482A10.013 10.013 0 0 0 22 12.012C22 6.484 17.522 2 12 2Z"/>
+          </svg>
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a href="https://linkedin.com/in/pratikshagaikwad" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6 1.1 6 0 4.88 0 3.5 0 2.12 1.1 1 2.48 1c1.38 0 2.5 1.12 2.5 2.5zM.11 8.22h4.75v11.56H.11V8.22zM7.35 8.22h4.55v1.59h.07c.63-1.19 2.18-2.44 4.48-2.44 4.79 0 5.67 3.15 5.67 7.24v8.67h-4.75v-7.65c0-1.82-.03-4.15-2.53-4.15-2.54 0-2.93 1.98-2.93 4.03v7.77H7.35V8.22z" fill="currentColor"/>
+          </svg>
+          <span class="sr-only">LinkedIn</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1eQeU263NloSnW__l6xrPpSlXm3lSeiyC/view" target="_blank" rel="noopener" aria-label="Resume PDF">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zM13 3.5L18.5 9H13V3.5zM8 12h8v2H8v-2zm0 4h8v2H8v-2z" fill="currentColor"/>
+          </svg>
+          <span class="sr-only">Resume</span>
+        </a>
+      </div>
+    </div>
+    <div class="abstract-illustration" aria-hidden="true">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%">
+        <!-- Network-like abstract lines -->
+        <line x1="10" y1="10" x2="90" y2="10" stroke-dasharray="10" stroke-dashoffset="0" />
+        <line x1="10" y1="30" x2="90" y2="70" stroke-dasharray="10" stroke-dashoffset="20" />
+        <line x1="90" y1="30" x2="10" y2="70" stroke-dasharray="10" stroke-dashoffset="40" />
+        <line x1="10" y1="50" x2="90" y2="90" stroke-dasharray="10" stroke-dashoffset="60" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section id="about" tabindex="-1" aria-labelledby="about-title">
+    <div class="container">
+      <h2 id="about-title">About Me</h2>
+      <p>
+        I am a final-year Computer Engineering student at Government College of Engineering, Yavatmal, with a passion for solving complex problems by applying strong technical foundations. I enjoy learning and working with Python scripting and front-end web technologies, combining analytical thinking with creativity. My goal is to contribute to impactful software projects through internships and entry-level development roles, while continuously improving my skills and knowledge.
+      </p>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section id="skills" tabindex="-1" aria-labelledby="skills-title">
+    <div class="container">
+      <h2 id="skills-title">Technical Skills</h2>
+
+      <div class="skill-category" aria-label="Programming Languages">
+        <h3>Programming Languages</h3>
+        <div class="skills-list">
+          <span class="skill-tag" tabindex="0">Python (Advanced)</span>
+          <span class="skill-tag" tabindex="0">Java (Basic)</span>
+          <span class="skill-tag" tabindex="0">HTML5</span>
+          <span class="skill-tag" tabindex="0">CSS3</span>
+          <span class="skill-tag" tabindex="0">JavaScript (Basic)</span>
+        </div>
+      </div>
+
+      <div class="skill-category" aria-label="Web Development">
+        <h3>Web Development</h3>
+        <div class="skills-list">
+          <span class="skill-tag" tabindex="0">Responsive Design</span>
+          <span class="skill-tag" tabindex="0">Wireframing & Storyboarding</span>
+          <span class="skill-tag" tabindex="0">Basic Front-end Scripting</span>
+          <span class="skill-tag" tabindex="0">GitHub (Version Control)</span>
+        </div>
+      </div>
+
+      <div class="skill-category" aria-label="Databases">
+        <h3>Databases</h3>
+        <div class="skills-list">
+          <span class="skill-tag" tabindex="0">Database Mapping</span>
+          <!-- More database skills can be added here -->
+        </div>
+      </div>
+
+      <div class="skill-category" aria-label="Tools & Media">
+        <h3>Tools & Media</h3>
+        <div class="skills-list">
+          <span class="skill-tag" tabindex="0">Adobe Premiere Pro</span>
+          <span class="skill-tag" tabindex="0">DaVinci Resolve</span>
+          <span class="skill-tag" tabindex="0">VN Video Editor</span>
+          <span class="skill-tag" tabindex="0">Midjourney</span>
+          <span class="skill-tag" tabindex="0">Canva Pro</span>
+          <span class="skill-tag" tabindex="0">Runway Gen-2 (AI Video Tooling)</span>
+        </div>
+      </div>
+
+      <div class="skill-category" aria-label="Core Computer Science">
+        <h3>Core Computer Science</h3>
+        <div class="skills-list">
+          <span class="skill-tag" tabindex="0">Networking Protocols & Systems</span>
+          <span class="skill-tag" tabindex="0">Data Framework Structures</span>
+          <span class="skill-tag" tabindex="0">Problem Solving</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section id="projects" tabindex="-1" aria-labelledby="projects-title">
+    <div class="container">
+      <h2 id="projects-title">Featured Projects</h2>
+      <div class="project-list" role="list">
+
+        <!-- Project 1 -->
+        <article class="project-card" role="listitem">
+          <h3>E-Bachat Gat • Microfinance Concept Web Architecture</h3>
+          <p>Designed a web-based ledger to compile local micro-group financial balances and transactional logs, simplifying complex math computations through minimalist UI dashboards.</p>
+          <p class="tech-list">Technologies: HTML5, CSS3, JavaScript, Database Mapping</p>
+          <div class="project-links">
+            <a href="#" aria-label="GitHub repository for E-Bachat Gat project" tabindex="0" aria-disabled="true" style="color:#555;cursor:default;pointer-events:none;">GitHub Repo (Link to add)</a>
+            <a href="#" aria-label="Live demo of E-Bachat Gat project" tabindex="0" aria-disabled="true" style="color:#555;cursor:default;pointer-events:none;">Live Demo (Link to add)</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card" role="listitem">
+          <h3>City Service Portal • Local Infrastructure Concept</h3>
+          <p>Structured a responsive portal prototype to aggregate municipal technical services digitally, focusing on clear layout flows and user-friendly presentation.</p>
+          <p class="tech-list">Technologies: Responsive CSS, Wireframing, JavaScript</p>
+          <div class="project-links">
+            <a href="#" aria-label="GitHub repository for City Service Portal project" tabindex="0" aria-disabled="true" style="color:#555;cursor:default;pointer-events:none;">GitHub Repo (Link to add)</a>
+            <a href="#" aria-label="Live demo of City Service Portal project" tabindex="0" aria-disabled="true" style="color:#555;cursor:default;pointer-events:none;">Live Demo (Link to add)</a>
+          </div>
+        </article>
+
+        <!-- Placeholder for additional projects -->
+        <!--
+        <article class="project-card" role="listitem">
+          <h3>[Project Title]</h3>
+          <p>[Brief project description.]</p>
+          <p class="tech-list">Technologies: [List technologies]</p>
+          <div class="project-links">
+            <a href="#" aria-label="GitHub repository link" tabindex="0">GitHub Repo</a>
+            <a href="#" aria-label="Live demo link" tabindex="0">Live Demo</a>
+          </div>
+        </article>
+        -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" tabindex="-1" aria-labelledby="education-title">
+    <div class="container">
+      <h2 id="education-title">Education</h2>
+
+      <div class="edu-item">
+        <h3>B.Tech in Computer Engineering</h3>
+        <p>Government College of Engineering, Yavatmal, Maharashtra</p>
+        <p>Expected Graduation: 2027</p>
+        <p>GPA: 8.11</p>
+      </div>
+
+      <div class="edu-item">
+        <h3>Diploma in Computer Engineering</h3>
+        <p>Government Residential Women's Polytechnic, Latur, Maharashtra</p>
+        <p>Completed: 2024</p>
+        <p>Score: 86.51%</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE & CERTIFICATIONS -->
+  <section id="experience" tabindex="-1" aria-labelledby="experience-title">
+    <div class="container">
+      <h2 id="experience-title">Internships & Certifications</h2>
+
+      <ul class="exp-list">
+        <li class="exp-item">
+          <h3>Python Development Intern - Qveto Technologies Private Limited (Remote)</h3>
+          <time datetime="2026-10">Oct 2026 - Present</time>
+          <p>Build backend logic, implement automated validation protocols using Python libraries, and collaborate on clean system structures for complex timeline edits.</p>
+        </li>
+        <li class="exp-item">
+          <h3>Web Development Intern - EduCADD, Latur, Maharashtra</h3>
+          <time datetime="2025-05">May 2025 - Jul 2025</time>
+          <p>Crafted responsive front-end layouts and interactive interfaces using HTML, CSS, and JavaScript. Developed wireframes and storyboards for user-friendly content flow.</p>
+        </li>
+      </ul>
+
+      <ul class="exp-list" aria-label="Certifications">
+        <li class="exp-item">
+          <h3>Foundational Course on Data Science with Gen AI</h3>
+          <time datetime="2026-01">Jan 2026</time>
+          <p>Innomatics Research Labs</p>
+        </li>
+        <li class="exp-item">
+          <h3>NPTEL Certification in Python Programming Language – Advanced Core Concepts Evaluation</h3>
+          <!-- Date not specified, omitted -->
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" tabindex="-1" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 id="contact-title">Contact</h2>
+      <p>You can reach me via email or professional profiles below.</p>
+      <p>
+        <a href="mailto:pratikshagaikwad1202@gmail.com" class="contact-link" aria-label="Send email to Pratiksha Gaikwad">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 
+            2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 
+            8-5v2z" fill="currentColor"/>
+          </svg>
+          pratikshagaikwad1202@gmail.com
+        </a>
+      </p>
+      <p>
+        <a href="https://linkedin.com/in/pratikshagaikwad" target="_blank" rel="noopener" class="contact-link" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6 
+            1.1 6 0 4.88 0 3.5 0 2.12 1.1 1 2.48 1c1.38 0 2.5 1.12 2.5 2.5zM.11 8.22h4.75v11.56H.11V8.22zM7.35 
+            8.22h4.55v1.59h.07c.63-1.19 2.18-2.44 4.48-2.44 4.79 0 5.67 3.15 5.67 7.24v8.67h-4.75v-7.65c0-1.82-.03-4.15-2.53-4.15-2.54 
+            0-2.93 1.98-2.93 4.03v7.77H7.35V8.22z" fill="currentColor"/>
+          </svg>
+          LinkedIn Profile
+        </a>
+      </p>
+      <p>
+        <a href="https://github.com/pratikshagaikwad" target="_blank" rel="noopener" class="contact-link" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.484 2 12.012c0 4.425 2.865 8.185 6.839 9.512.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.455-1.163-1.11-1.472-1.11-1.472-.908-.62.069-.608.069-.608 1.004.07 1.532 1.034 1.532 1.034.892 1.53 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.58 9.58 0 0 1 2.5.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.399.1 2.653.64.7 1.028 1.594 1.028 2.687 0 3.848-2.339 4.695-4.566 4.943.36.31.682.923.682 1.86 0 1.342-.012 2.423-.012 2.753 0 .269.18.58.688.482A10.013 10.013 0 0 0 22 12.012C22 6.484 17.522 2 12 2Z"/>
+          </svg>
+          GitHub Profile
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> Pratiksha Gaikwad</p>
+      <a href="#home" class="back-to-top" aria-label="Back to top" title="Back to top" tabindex="0">↑</a>
+    </div>
+  </footer>
+
+<script>
+  // Mobile navigation toggle
+  (function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('#primary-menu');
+
+    menuToggle.addEventListener('click', function () {
+      const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+      this.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('open');
+      if (!expanded) {
+        navMenu.focus();
+      }
+    });
+  })();
+
+  // Set current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Keyboard navigation fix: close mobile menu when clicking a link
+  Array.from(document.querySelectorAll('#primary-menu a')).forEach(function(link){
+    link.addEventListener('click', function() {
+      const navMenu = document.querySelector('#primary-menu');
+      const menuToggle = document.querySelector('.menu-toggle');
+      if(navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.focus();
+      }
+    });
+  });
+</script>
+</body>
+</html>
+```
